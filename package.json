@@ -1,18 +1,18 @@
 {
   "name": "materialui-ts",
   "version": "0.1.0",
-  "private": true, 
+  "private": true,
   "scripts": {
     "start": "BROWSER=none react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "dependencies": {    
+  "dependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-router-dom": "6",
     "react-scripts": "5.0.0"
-   
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.14.1",

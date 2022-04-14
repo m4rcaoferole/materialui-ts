@@ -1,0 +1,31 @@
+{
+  "tabnine.experimentalAutoImports": true,
+
+  "editor.formatOnSave": false,
+  "editor.fontFamily": "'Fira Code', 'Courier New', monospace",
+  "editor.fontLigatures": true,
+
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "workbench.iconTheme": "material-icon-theme",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "liveshare.presence": true,
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "workbench.colorTheme": "Firefox Dark",
+  "bracketPairColorizer.depreciation-notice": false,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.cursorWidth": 4,
+  "editor.cursorBlinking": "expand",
+  "editor.cursorSmoothCaretAnimation": true,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.minimap.enabled": false,
+  "window.zoomLevel": -1
+}

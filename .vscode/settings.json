@@ -2,7 +2,7 @@
   "tabnine.experimentalAutoImports": true,
 
   "editor.formatOnSave": false,
-  "editor.fontFamily": "'Fira Code', 'Courier New', monospace",
+  "editor.fontFamily" : "JetBrains Mono",
   "editor.fontLigatures": true,
 
   "editor.codeActionsOnSave": {
@@ -15,6 +15,10 @@
   "liveshare.presence": true,
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "editor.fontSize" : 16,
+  "editor.lineHeight" : 26,
+  "editor.tabSize" : 2,
+  "terminal.integrated.fontSize" : 12,
   "workbench.colorTheme": "Firefox Dark",
   "bracketPairColorizer.depreciation-notice": false,
   "[typescript]": {
@@ -27,5 +31,5 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "editor.minimap.enabled": false,
-  "window.zoomLevel": -1
+  "window.zoomLevel": 0
 }

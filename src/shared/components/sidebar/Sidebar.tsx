@@ -14,7 +14,7 @@ import { Box } from "@mui/system";
 
 export const Sidebar: React.FC = ({ children }) => {
   const theme = useTheme();
-
+0
   return (
     <>
       <Drawer variant="permanent">

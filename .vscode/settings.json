@@ -19,7 +19,7 @@
   "editor.lineHeight" : 26,
   "editor.tabSize" : 2,
   "terminal.integrated.fontSize" : 12,
-  "workbench.colorTheme": "Firefox Dark",
+  "workbench.colorTheme": "Dracula Soft",
   "bracketPairColorizer.depreciation-notice": false,
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"

@@ -30,6 +30,6 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "editor.minimap.enabled": false,
-  "window.zoomLevel": 0
+  "editor.minimap.enabled": true,
+  "window.zoomLevel": -1
 }

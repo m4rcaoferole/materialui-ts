@@ -1,8 +1,8 @@
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from 'react-router-dom';
 
-import { AppRoutes } from "./routes";
-import { Sidebar } from "./shared/components/sidebar/Sidebar";
-import { AppThemeProvider, DrawerProvider } from "./shared/contexts";
+import { AppRoutes } from './routes';
+import { Sidebar } from './shared/components/sidebar/Sidebar';
+import { AppThemeProvider, DrawerProvider } from './shared/contexts';
 
 export const App = () => {
   return (
@@ -11,7 +11,7 @@ export const App = () => {
         <BrowserRouter>
 
           <Sidebar>
-            <AppRoutes />
+            <AppRoutes /> 
           </Sidebar>
           
         </BrowserRouter>

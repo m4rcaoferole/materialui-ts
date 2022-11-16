@@ -22,6 +22,10 @@ interface IListItemLinkProps {
   onClick: (() => void) | undefined;
 }
 
+interface ISidebarProps {
+  children: React.ReactNode;
+}
+
 const ListItemLink: React.FC<IListItemLinkProps> = ({
   to,
   icon,
@@ -47,7 +51,7 @@ const ListItemLink: React.FC<IListItemLinkProps> = ({
   );
 };
 
-export const Sidebar: React.FC = ({ children }) => {
+export const Sidebar: React.FC<ISidebarProps> = ({ children }) => {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
 

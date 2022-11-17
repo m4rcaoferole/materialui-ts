@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useState } from "react";
+import { createContext, useCallback, useContext, useState } from 'react';
 
 interface IDrawerOption {
   icon: string;
@@ -40,7 +40,12 @@ export const DrawerProvider: React.FC<DrawerProviderProps> = ({ children }) => {
 
   return (
     <DrawerContext.Provider
-      value={{ isDrawerOpen, drawerOptions, setDrawerOptions: handleSetDrawerOptions,toggleDrawerOpen }}
+      value={{ 
+        isDrawerOpen,
+        drawerOptions,
+        setDrawerOptions: handleSetDrawerOptions,
+        toggleDrawerOpen
+      }}
     >
       {children}
     </DrawerContext.Provider>

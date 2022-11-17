@@ -9,21 +9,17 @@ import {
   ListItemText,
   useMediaQuery,
   useTheme,
-} from "@mui/material";
-import { deepOrange } from "@mui/material/colors";
-import { Box } from "@mui/system";
-import { useMatch, useNavigate, useResolvedPath } from "react-router-dom";
-import { useDrawerContext } from "../../contexts";
+} from '@mui/material';
+import { deepOrange } from '@mui/material/colors';
+import { Box } from '@mui/system';
+import { useMatch, useNavigate, useResolvedPath } from 'react-router-dom';
+import { useDrawerContext } from '../../contexts';
 
 interface IListItemLinkProps {
   to: string;
   icon: string;
   label: string;
   onClick: (() => void) | undefined;
-}
-
-interface ISidebarProps {
-  children: React.ReactNode;
 }
 
 const ListItemLink: React.FC<IListItemLinkProps> = ({
@@ -33,8 +29,8 @@ const ListItemLink: React.FC<IListItemLinkProps> = ({
   onClick,
 }) => {
   const navigate = useNavigate();
-  const resolvedPath = useResolvedPath(to)
-  const match = useMatch({ path: resolvedPath.pathname, end: false })
+  const resolvedPath = useResolvedPath(to);
+  const match = useMatch({ path: resolvedPath.pathname, end: false });
 
   const handleClick = () => {
     navigate(to);
@@ -51,6 +47,10 @@ const ListItemLink: React.FC<IListItemLinkProps> = ({
   );
 };
 
+interface ISidebarProps {
+  children: React.ReactNode;
+}
+
 export const Sidebar: React.FC<ISidebarProps> = ({ children }) => {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
@@ -59,8 +59,8 @@ export const Sidebar: React.FC<ISidebarProps> = ({ children }) => {
 
   return (
     <>
-      <Drawer 
-        open={isDrawerOpen} 
+      <Drawer
+        open={isDrawerOpen}
         variant={smDown ? 'temporary' : 'permanent'}
         onClose={toggleDrawerOpen}
       >
@@ -94,13 +94,13 @@ export const Sidebar: React.FC<ISidebarProps> = ({ children }) => {
 
           <Box flex={1}>
             <List component="nav">
-              {drawerOptions.map(drawerOptions => (
+              {drawerOptions.map((drawerOptions) => (
                 <ListItemLink
-                key={drawerOptions.path}
-                icon={drawerOptions.icon}
-                to={drawerOptions.path}
-                label={drawerOptions.label}
-                onClick={smDown ? toggleDrawerOpen : undefined}
+                  key={drawerOptions.path}
+                  icon={drawerOptions.icon}
+                  to={drawerOptions.path}
+                  label={drawerOptions.label}
+                  onClick={smDown ? toggleDrawerOpen : undefined}
                 />
               ))}
             </List>
@@ -108,7 +108,7 @@ export const Sidebar: React.FC<ISidebarProps> = ({ children }) => {
         </Box>
       </Drawer>
 
-      <Box height="100vh" marginLeft={theme.spacing(28)}>
+      <Box height="100vh" marginLeft={smDown ? 0 : theme.spacing(28)}>
         {children}
       </Box>
     </>

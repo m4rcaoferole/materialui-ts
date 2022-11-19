@@ -1,13 +1,19 @@
-import { Box, Button, Divider, Icon, Paper, useTheme } from '@mui/material';
+import { Box, Button, Divider, Icon, Paper, Skeleton, useTheme } from '@mui/material';
 
 interface IToolbarDetailProps {
-  textNewBottom?: string;
+  textNewButton?: string;
 
-  showButtomNew?: boolean;
-  showButtomBack?: boolean;
-  showButtomDelete?: boolean;
-  showButtomSave?: boolean;
-  showButtomSaveClose?: boolean;
+  showButtonNew?: boolean;
+  showButtonBack?: boolean;
+  showButtonDelete?: boolean;
+  showButtonSave?: boolean;
+  showButtonSaveClose?: boolean;
+
+  loadingButtonNew?: boolean;
+  loadingButtonBack?: boolean;
+  loadingButtonDelete?: boolean;
+  loadingButtonSave?: boolean;
+  loadingButtonSaveClose?: boolean;
 
   clickNewButton?: () => void;
   clickBackButton?: () => void;
@@ -17,12 +23,18 @@ interface IToolbarDetailProps {
 }
 
 export const ToolbarDetail: React.FC<IToolbarDetailProps> = ({
-  textNewBottom = 'Novo',
-  showButtomNew = true,
-  showButtomBack = true,
-  showButtomDelete = true,
-  showButtomSave = true,
-  showButtomSaveClose = false,
+  textNewButton = 'Novo',
+  showButtonNew = true,
+  showButtonBack = true,
+  showButtonDelete = true,
+  showButtonSave = true,
+  showButtonSaveClose = false,
+
+  loadingButtonNew = false,
+  loadingButtonBack = false,
+  loadingButtonDelete = false,
+  loadingButtonSave = false,
+  loadingButtonSaveClose = false,
 
   clickNewButton,
   clickBackButton,
@@ -32,7 +44,7 @@ export const ToolbarDetail: React.FC<IToolbarDetailProps> = ({
 }) => {
   const theme = useTheme();
 
-  return(
+  return (
     <Box
       component={Paper}
       display="flex"
@@ -43,47 +55,73 @@ export const ToolbarDetail: React.FC<IToolbarDetailProps> = ({
       paddingX={2}
       height={theme.spacing(5)}
     >
-      { showButtomSave && (<Button
-        color="primary"
-        disableElevation
-        variant='contained'
-        onClick={clickSaveButton}
-        endIcon={<Icon>save</Icon>}
-      >Salvar</Button>)}
+      {(showButtonSave && !loadingButtonSave) && (
+        <Button
+          color="primary"
+          disableElevation
+          variant="contained"
+          onClick={clickSaveButton}
+          endIcon={<Icon>save</Icon>}
+        >
+          Salvar
+        </Button>
+      )}
+      { loadingButtonSave && (<Skeleton width={110} height={60} />)}
 
-      { showButtomSaveClose && (<Button
-        color="primary"
-        disableElevation
-        variant='outlined'
-        onClick={clickSaveAndCloseButton}
-        endIcon={<Icon>save</Icon>}
-      >Salvar e Voltar</Button>)}
+      {(showButtonSaveClose && !loadingButtonSaveClose) && (
+        <Button
+          color="primary"
+          disableElevation
+          variant="outlined"
+          onClick={clickSaveAndCloseButton}
+          endIcon={<Icon>save</Icon>}
+        >
+          Salvar e Voltar
+        </Button>
+      )}
+      { loadingButtonSaveClose && (<Skeleton width={180} height={60} />)}
 
-      { showButtomDelete && (<Button
-        color="primary"
-        disableElevation
-        variant='outlined'
-        onClick={clickDeleteButton}
-        endIcon={<Icon>delete</Icon>}
-      >Apagar</Button>)}
+      {(showButtonDelete && !loadingButtonDelete) && (
+        <Button
+          color="primary"
+          disableElevation
+          variant="outlined"
+          onClick={clickDeleteButton}
+          endIcon={<Icon>delete</Icon>}
+        >
+          Apagar
+        </Button>
+      )}
+      { loadingButtonDelete && (<Skeleton width={110} height={60} />)}
 
-      { showButtomNew && (<Button
-        color="primary"
-        disableElevation
-        variant='outlined'
-        onClick={clickNewButton}
-        endIcon={<Icon>add</Icon>}
-      >{textNewBottom}</Button>)}
+      {(showButtonNew && !loadingButtonNew) && (
+        <Button
+          color="primary"
+          disableElevation
+          variant="outlined"
+          onClick={clickNewButton}
+          endIcon={<Icon>add</Icon>}
+        >
+          {textNewButton}
+        </Button>
+      )}
+      { loadingButtonNew && (<Skeleton width={110} height={60} />)}
 
-      <Divider variant='middle' orientation='vertical' />
+      <Divider variant="middle" orientation="vertical" />
 
-      { showButtomBack && (<Button
-        color="primary"
-        disableElevation
-        variant='outlined'
-        onClick={clickBackButton}
-        endIcon={<Icon>arrow_back</Icon>}
-      >Voltar</Button>)}
+      {(showButtonBack && !loadingButtonBack) && (
+        <Button
+          color="primary"
+          disableElevation
+          variant="outlined"
+          onClick={clickBackButton}
+          endIcon={<Icon>arrow_back</Icon>}
+        >
+          Voltar
+        </Button>
+      )}
+      { loadingButtonBack && (<Skeleton width={110} height={60} />)}
+
     </Box>
   );
 };

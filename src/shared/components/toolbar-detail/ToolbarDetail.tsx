@@ -1,6 +1,35 @@
 import { Box, Button, Divider, Icon, Paper, useTheme } from '@mui/material';
 
-export const ToolbarDetail: React.FC = () => {
+interface IToolbarDetailProps {
+  textNewBottom?: string;
+
+  showButtomNew?: boolean;
+  showButtomBack?: boolean;
+  showButtomDelete?: boolean;
+  showButtomSave?: boolean;
+  showButtomSaveClose?: boolean;
+
+  clickNewButton?: () => void;
+  clickBackButton?: () => void;
+  clickDeleteButton?: () => void;
+  clickSaveButton?: () => void;
+  clickSaveAndCloseButton?: () => void;
+}
+
+export const ToolbarDetail: React.FC<IToolbarDetailProps> = ({
+  textNewBottom = 'Novo',
+  showButtomNew = true,
+  showButtomBack = true,
+  showButtomDelete = true,
+  showButtomSave = true,
+  showButtomSaveClose = false,
+
+  clickNewButton,
+  clickBackButton,
+  clickDeleteButton,
+  clickSaveButton,
+  clickSaveAndCloseButton,
+}) => {
   const theme = useTheme();
 
   return(
@@ -14,42 +43,47 @@ export const ToolbarDetail: React.FC = () => {
       paddingX={2}
       height={theme.spacing(5)}
     >
-      <Button
+      { showButtomSave && (<Button
         color="primary"
         disableElevation
         variant='contained'
+        onClick={clickSaveButton}
         endIcon={<Icon>save</Icon>}
-      >Salvar</Button>
+      >Salvar</Button>)}
 
-      <Button
+      { showButtomSaveClose && (<Button
         color="primary"
         disableElevation
         variant='outlined'
+        onClick={clickSaveAndCloseButton}
         endIcon={<Icon>save</Icon>}
-      >Salvar e Voltar</Button>
+      >Salvar e Voltar</Button>)}
 
-      <Button
+      { showButtomDelete && (<Button
         color="primary"
         disableElevation
         variant='outlined'
+        onClick={clickDeleteButton}
         endIcon={<Icon>delete</Icon>}
-      >Apagar</Button>
+      >Apagar</Button>)}
 
-      <Button
+      { showButtomNew && (<Button
         color="primary"
         disableElevation
         variant='outlined'
+        onClick={clickNewButton}
         endIcon={<Icon>add</Icon>}
-      >Novo</Button>
+      >{textNewBottom}</Button>)}
 
       <Divider variant='middle' orientation='vertical' />
 
-      <Button
+      { showButtomBack && (<Button
         color="primary"
         disableElevation
         variant='outlined'
+        onClick={clickBackButton}
         endIcon={<Icon>arrow_back</Icon>}
-      >Voltar</Button>
+      >Voltar</Button>)}
     </Box>
   );
 };

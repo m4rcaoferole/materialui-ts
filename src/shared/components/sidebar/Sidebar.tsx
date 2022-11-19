@@ -12,40 +12,8 @@ import {
 } from '@mui/material';
 import { deepOrange } from '@mui/material/colors';
 import { Box } from '@mui/system';
-import { useMatch, useNavigate, useResolvedPath } from 'react-router-dom';
 import { useAppThemeContext, useDrawerContext } from '../../contexts';
-
-interface IListItemLinkProps {
-  to: string;
-  icon: string;
-  label: string;
-  onClick: (() => void) | undefined;
-}
-
-const ListItemLink: React.FC<IListItemLinkProps> = ({
-  to,
-  icon,
-  label,
-  onClick,
-}) => {
-  const navigate = useNavigate();
-  const resolvedPath = useResolvedPath(to);
-  const match = useMatch({ path: resolvedPath.pathname, end: false });
-
-  const handleClick = () => {
-    navigate(to);
-    onClick?.();
-  };
-
-  return (
-    <ListItemButton selected={!!match} onClick={handleClick}>
-      <ListItemIcon>
-        <Icon>{icon}</Icon>
-      </ListItemIcon>
-      <ListItemText primary={label} />
-    </ListItemButton>
-  );
-};
+import { ListItemLink } from './ListItemLink';
 
 interface ISidebarProps {
   children: React.ReactNode;

@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Icon, Paper, Skeleton, useTheme } from '@mui/material';
+import { Box, Button, Divider, Icon, Paper, Skeleton, Theme, Typography, useMediaQuery, useTheme } from '@mui/material';
 
 interface IToolbarDetailProps {
   textNewButton?: string;
@@ -42,6 +42,8 @@ export const ToolbarDetail: React.FC<IToolbarDetailProps> = ({
   clickSaveButton,
   clickSaveAndCloseButton,
 }) => {
+  const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
+  const mdDown = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
   const theme = useTheme();
 
   return (
@@ -63,12 +65,14 @@ export const ToolbarDetail: React.FC<IToolbarDetailProps> = ({
           onClick={clickSaveButton}
           endIcon={<Icon>save</Icon>}
         >
-          Salvar
+          <Typography variant="button" whiteSpace="nowrap" textOverflow="ellipsis" overflow="hidden">
+            Salvar
+          </Typography>
         </Button>
       )}
-      { loadingButtonSave && (<Skeleton width={110} height={60} />)}
+      { (loadingButtonSave && !smDown) && (<Skeleton width={110} height={60} />)}
 
-      {(showButtonSaveClose && !loadingButtonSaveClose) && (
+      {(showButtonSaveClose && !loadingButtonSaveClose && !smDown && !mdDown) && (
         <Button
           color="primary"
           disableElevation
@@ -76,10 +80,12 @@ export const ToolbarDetail: React.FC<IToolbarDetailProps> = ({
           onClick={clickSaveAndCloseButton}
           endIcon={<Icon>save</Icon>}
         >
-          Salvar e Voltar
+          <Typography variant="button" whiteSpace="nowrap" textOverflow="ellipsis" overflow="hidden">
+            Salvar e Voltar
+          </Typography>
         </Button>
       )}
-      { loadingButtonSaveClose && (<Skeleton width={180} height={60} />)}
+      { (loadingButtonSaveClose && !smDown && !mdDown) && (<Skeleton width={180} height={60} />)}
 
       {(showButtonDelete && !loadingButtonDelete) && (
         <Button
@@ -89,12 +95,14 @@ export const ToolbarDetail: React.FC<IToolbarDetailProps> = ({
           onClick={clickDeleteButton}
           endIcon={<Icon>delete</Icon>}
         >
-          Apagar
+          <Typography variant="button" whiteSpace="nowrap" textOverflow="ellipsis" overflow="hidden">
+            Apagar
+          </Typography>
         </Button>
       )}
       { loadingButtonDelete && (<Skeleton width={110} height={60} />)}
 
-      {(showButtonNew && !loadingButtonNew) && (
+      {(showButtonNew && !loadingButtonNew && !smDown) && (
         <Button
           color="primary"
           disableElevation
@@ -102,12 +110,20 @@ export const ToolbarDetail: React.FC<IToolbarDetailProps> = ({
           onClick={clickNewButton}
           endIcon={<Icon>add</Icon>}
         >
-          {textNewButton}
+          <Typography variant="button" whiteSpace="nowrap" textOverflow="ellipsis" overflow="hidden">
+            {textNewButton}
+          </Typography>
         </Button>
       )}
-      { loadingButtonNew && (<Skeleton width={110} height={60} />)}
+      { (loadingButtonNew && !smDown) && (<Skeleton width={110} height={60} />)}
 
-      <Divider variant="middle" orientation="vertical" />
+      {
+        ( showButtonBack &&
+          ( showButtonNew || showButtonDelete || showButtonSave || showButtonSaveClose)
+        ) && (
+          <Divider variant="middle" orientation="vertical" />
+        )
+      }
 
       {(showButtonBack && !loadingButtonBack) && (
         <Button
@@ -117,7 +133,9 @@ export const ToolbarDetail: React.FC<IToolbarDetailProps> = ({
           onClick={clickBackButton}
           endIcon={<Icon>arrow_back</Icon>}
         >
-          Voltar
+          <Typography variant="button" whiteSpace="nowrap" textOverflow="ellipsis" overflow="hidden">
+            Voltar
+          </Typography>
         </Button>
       )}
       { loadingButtonBack && (<Skeleton width={110} height={60} />)}

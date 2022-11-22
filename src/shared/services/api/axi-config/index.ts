@@ -1,8 +1,10 @@
 import axios from 'axios';
+
 import { errorInterceptor, responseInterceptor } from './interceptors';
+import { Environment } from '../../../environment';
 
 const api = axios.create({
-  baseURL: 'http://localhost:3333'
+  baseURL: Environment.URL_BASE,
 });
 
 api.interceptors.response.use(
@@ -10,4 +12,4 @@ api.interceptors.response.use(
   (error) => errorInterceptor(error),
 );
 
-export { api };
+export { api }; 

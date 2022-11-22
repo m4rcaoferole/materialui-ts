@@ -81,7 +81,7 @@ export const ToolbarDetail: React.FC<IToolbarDetailProps> = ({
           endIcon={<Icon>save</Icon>}
         >
           <Typography variant="button" whiteSpace="nowrap" textOverflow="ellipsis" overflow="hidden">
-            Salvar e Voltar
+            Salvar e Fechar
           </Typography>
         </Button>
       )}

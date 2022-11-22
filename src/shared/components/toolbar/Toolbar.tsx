@@ -1,5 +1,7 @@
 import { Box, Button, Icon, Paper, TextField, useTheme } from '@mui/material';
 
+import { Environment } from '../../environment';
+
 interface IToolbarProps {
   textSearch?: string;
   showInput?: boolean;
@@ -33,7 +35,7 @@ export const Toolbar: React.FC<IToolbarProps> = ({
       { showInput && (<TextField
         size='small'
         value={textSearch}
-        placeholder='Pesquisar...'
+        placeholder={Environment.INPUT_DE_BUSCA}
         onChange={(e) => changeTextInput?.(e.target.value)}
       />)}
 

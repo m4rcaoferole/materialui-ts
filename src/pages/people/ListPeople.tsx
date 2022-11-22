@@ -1,11 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { LinearProgress, Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TableRow } from '@mui/material';
 
 import { IListagemPessoa, PessoasService } from '../../shared/services/api/pessoas/PessoasService';
 import { LayoutBasePage } from '../../shared/layouts';
 import { Toolbar } from '../../shared/components';
 import { useDebounce } from '../../shared/hooks';
+import { Environment } from '../../shared/environment';
 
 export const ListPeople: React.FC = () => {
   const [ searchParams, setSearchParams ] = useSearchParams();
@@ -61,15 +62,27 @@ export const ListPeople: React.FC = () => {
               <TableCell>Email</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>            
-            { !isLoading && rows.map(row => (
+          <TableBody>
+            {rows.map(row => (
               <TableRow key={row.id}>
                 <TableCell>Ações</TableCell>
                 <TableCell>{row.nomeCompleto}</TableCell>
                 <TableCell>{row.email}</TableCell>
               </TableRow>
             ))}
-          </TableBody>          
+          </TableBody>
+          { totalCount === 0 && !isLoading && (
+            <caption>{Environment.LISTAGEM_VAZIA}</caption>
+          )}
+          <TableFooter>
+            {isLoading && (
+              <TableRow>
+                <TableCell colSpan={3}>
+                  <LinearProgress variant='indeterminate' />
+                </TableCell>
+              </TableRow>
+            )}
+          </TableFooter>
         </Table>
       </TableContainer>      
     </LayoutBasePage>

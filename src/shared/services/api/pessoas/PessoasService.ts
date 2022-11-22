@@ -1,21 +1,21 @@
 import { Environment } from '../../../environment';
 import { api } from '../axi-config';
 
-interface IListagemPessoa {
+export interface IListagemPessoa {
   id: number;
   email: string;
   cidadeId: number;
   nomeCompleto: string;
 }
 
-interface IDetalhePessoa {
+export interface IDetalhePessoa {
   id: number;
   email: string;
   cidadeId: number;
   nomeCompleto: string;
 }
 
-type TPessoasComTotalCount = {
+export type TPessoasComTotalCount = {
   data: IListagemPessoa[];
   totalCount: number;
 }

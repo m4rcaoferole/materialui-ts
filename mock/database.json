@@ -3,8 +3,30 @@
     {
       "id": 1,
       "email": "marcos@gmail.com",
-      "cidadeId": "Vini",
+      "cidadeId": "31",
       "nomeCompleto": "Marcos Vinicius"
+    },
+    {
+      "id": 2,
+      "email": "oliveira@gmail.com",
+      "cidadeId": "21",
+      "nomeCompleto": "Oliveira Vinicius"
+    },
+    {
+      "id": 3,
+      "email": "ferreira@gmail.com",
+      "cidadeId": "23",
+      "nomeCompleto": "Ferreira Vinicius"
+    },{
+      "id": 4,
+      "email": "augusto@gmail.com",
+      "cidadeId": "13",
+      "nomeCompleto": "Augusto Vinicius"
+    },{
+      "id": 5,
+      "email": "cesar@gmail.com",
+      "cidadeId": "22",
+      "nomeCompleto": "Cesar Vinicius"
     }
   ]
 }

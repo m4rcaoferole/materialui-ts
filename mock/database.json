@@ -1,3 +1,10 @@
 {
-  "pessoas": []
+  "pessoas": [
+    {
+      "id": 1,
+      "email": "marcos@gmail.com",
+      "cidadeId": "Vini",
+      "nomeCompleto": "Marcos Vinicius"
+    }
+  ]
 }

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Icon, IconButton, LinearProgress, Pagination, Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TableRow } from '@mui/material';
 
 import { IListagemPessoa, PessoasService } from '../../shared/services/api/pessoas/PessoasService';
@@ -11,6 +11,7 @@ import { Environment } from '../../shared/environment';
 export const ListPeople: React.FC = () => {
   const [ searchParams, setSearchParams ] = useSearchParams();
   const { debounce } = useDebounce();
+  const navigate = useNavigate();
 
   const [rows, setRows] = useState<IListagemPessoa[]>([]);
   const [totalCount, setTotalCount] = useState(0);
@@ -54,7 +55,7 @@ export const ListPeople: React.FC = () => {
             setRows(oldRows => [...oldRows.filter(oldRow => oldRow.id !== id)]);
             alert('Registro apagado com sucesso!');
           }
-        });
+        }); 
     }
   };
 
@@ -66,6 +67,7 @@ export const ListPeople: React.FC = () => {
           showInput
           textNewButton='Nova'
           textSearch={busca}
+          newClickButton={() => navigate('/pessoas/detalhe/nova')}
           changeTextInput={text => 
             setSearchParams({ busca: text, pagina: '1'}, { replace: true})}
         />
@@ -92,6 +94,7 @@ export const ListPeople: React.FC = () => {
                   </IconButton>
                   <IconButton 
                     size="small"
+                    onClick={() => navigate(`/pessoas/detalhe/${row.id}`)}
                   >
                     <Icon>edit</Icon>
                   </IconButton>

@@ -1,18 +1,6 @@
 {
   "pessoas": [
     {
-      "id": 1,
-      "email": "marcos@gmail.com",
-      "cidadeId": "31",
-      "nomeCompleto": "Marcos Vinicius"
-    },
-    {
-      "id": 2,
-      "email": "oliveira@gmail.com",
-      "cidadeId": "21",
-      "nomeCompleto": "Oliveira Vinicius"
-    },
-    {
       "id": 3,
       "email": "ferreira@gmail.com",
       "cidadeId": "23",
@@ -47,12 +35,14 @@
       "email": "pedro@gmail.com",
       "cidadeId": "23",
       "nomeCompleto": "Pedro Oliveira"
-    },{
+    },
+    {
       "id": 9,
       "email": "fernando@gmail.com",
       "cidadeId": "13",
       "nomeCompleto": "Fernando Oliveira"
-    },{
+    },
+    {
       "id": 10,
       "email": "luis@gmail.com",
       "cidadeId": "22",
@@ -75,12 +65,14 @@
       "email": "silva@gmail.com",
       "cidadeId": "23",
       "nomeCompleto": "Silva Souza"
-    },{
+    },
+    {
       "id": 14,
       "email": "renan@gmail.com",
       "cidadeId": "13",
       "nomeCompleto": "Renan Souza"
-    },{
+    },
+    {
       "id": 15,
       "email": "joão@gmail.com",
       "cidadeId": "22",

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { LinearProgress, Pagination, Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TableRow } from '@mui/material';
+import { Icon, IconButton, LinearProgress, Pagination, Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TableRow } from '@mui/material';
 
 import { IListagemPessoa, PessoasService } from '../../shared/services/api/pessoas/PessoasService';
 import { LayoutBasePage } from '../../shared/layouts';
@@ -44,6 +44,20 @@ export const ListPeople: React.FC = () => {
     });
   }, [busca, pagina]);
 
+  const handleDelete = (id: number) => {
+    if (confirm('Realmente deseja apagar?')) {
+      PessoasService.deleteById(id)
+        .then(result => {
+          if (result instanceof Error) {
+            alert(result.message);
+          } else {
+            setRows(oldRows => [...oldRows.filter(oldRow => oldRow.id !== id)]);
+            alert('Registro apagado com sucesso!');
+          }
+        });
+    }
+  };
+
   return (
     <LayoutBasePage
       title="Listagem de pessoas"
@@ -69,7 +83,19 @@ export const ListPeople: React.FC = () => {
           <TableBody>
             {rows.map(row => (
               <TableRow key={row.id}>
-                <TableCell>Ações</TableCell>
+                <TableCell>
+                  <IconButton 
+                    size="small" 
+                    onClick={() => handleDelete(row.id)}
+                  >
+                    <Icon>delete</Icon>
+                  </IconButton>
+                  <IconButton 
+                    size="small"
+                  >
+                    <Icon>edit</Icon>
+                  </IconButton>
+                </TableCell>
                 <TableCell>{row.nomeCompleto}</TableCell>
                 <TableCell>{row.email}</TableCell>
               </TableRow>

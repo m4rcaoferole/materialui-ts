@@ -1,10 +1,11 @@
-import { LinearProgress } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Form } from '@unform/web';
 
+import { PessoasService } from '../../shared/services/api/pessoas/PessoasService';
 import { ToolbarDetail } from '../../shared/components';
 import { LayoutBasePage } from '../../shared/layouts';
-import { PessoasService } from '../../shared/services/api/pessoas/PessoasService';
+import { VTextField } from '../../shared/forms';
 
 
 export const DetailPeople = () => {
@@ -69,11 +70,17 @@ export const DetailPeople = () => {
         />
       }
     >
-      { isLoading && (
+
+      <Form onSubmit={console.log}>
+
+        <VTextField />
+
+      </Form>
+      {/* { isLoading && (
         <LinearProgress variant="indeterminate" />
       )}
 
-      <p> Detalhe de Pessoa {id}</p>
+      <p> Detalhe de Pessoa {id}</p> */}
     </LayoutBasePage>
   );
 };

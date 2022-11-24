@@ -1,12 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { FormHandles } from '@unform/core';
 import { Box, Grid, LinearProgress, Paper, Typography } from '@mui/material';
 
 import { PessoasService } from '../../shared/services/api/pessoas/PessoasService';
 import { ToolbarDetail } from '../../shared/components';
 import { LayoutBasePage } from '../../shared/layouts';
-import { VTextField, VForm } from '../../shared/forms';
+import { VTextField, VForm, useVForm } from '../../shared/forms';
 
 interface IFormData {
   email: string;
@@ -17,8 +16,13 @@ interface IFormData {
 export const DetailPeople = () => {
   const { id = '' } = useParams<'id'>();
   const navigate = useNavigate();
-
-  const formRef = useRef<FormHandles>(null);
+  const { 
+    formRef,
+    save,
+    saveAndClose,
+    isSaveAndClose
+  } =useVForm();
+  
 
   const [isLoading, setIsLoading] = useState(false);
   const [nome, setNome] = useState('');
@@ -61,7 +65,11 @@ export const DetailPeople = () => {
           if (result instanceof Error) {
             alert(result.message);
           } else {
-            navigate(`/pessoas/detalhe/${result}`);
+            if (isSaveAndClose()) {
+              navigate('/pessoas');
+            } else {
+              navigate(`/pessoas/detalhe/${result}`);
+            }
           }
         });
     } else {
@@ -72,6 +80,10 @@ export const DetailPeople = () => {
           
           if (result instanceof Error) {
             alert(result.message);
+          } else {
+            if (isSaveAndClose()) {
+              navigate('/pessoas');
+            } 
           }
         });
     }
@@ -101,11 +113,11 @@ export const DetailPeople = () => {
           showButtonNew={id !== 'nova'}
           showButtonDelete={id !== 'nova'}
 
+          clickSaveButton={save}
+          clickSaveAndCloseButton={saveAndClose}
           clickBackButton={() => navigate('/pessoas')}
           clickDeleteButton={() => handleDelete(Number(id))}
-          clickSaveButton={() => formRef.current?.submitForm()}
           clickNewButton={() => navigate('/pessoas/detalhe/nova')}
-          clickSaveAndCloseButton={() => formRef.current?.submitForm()}
         />
       }
     >

@@ -22,7 +22,7 @@ export const VTextField: React.FC<TVTextFieldProps> = ({ name, ...rest}) => {
       getValue: () => value,
       setValue: (_, newValue) => setValue(newValue),
     });
-  }, [registerField, fieldName]);
+  }, [registerField, fieldName, value]);
 
   return (
     <TextField 

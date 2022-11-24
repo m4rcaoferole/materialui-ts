@@ -13,18 +13,6 @@
       "nomeCompleto": "Augusto Vinicius"
     },
     {
-      "id": 5,
-      "email": "cesar@gmail.com",
-      "cidadeId": "22",
-      "nomeCompleto": "Cesar Vinicius"
-    },
-    {
-      "id": 6,
-      "email": "marokusu@gmail.com",
-      "cidadeId": "31",
-      "nomeCompleto": "Marokusu Oliveira"
-    },
-    {
       "id": 7,
       "email": "thiago@gmail.com",
       "cidadeId": "21",
@@ -77,6 +65,24 @@
       "email": "joão@gmail.com",
       "cidadeId": "22",
       "nomeCompleto": "João Souza"
+    },
+    {
+      "id": 16,
+      "nomeCompleto": "Cesar Ferreira",
+      "email": "cesar@gmail.com",
+      "cidadeId": "21"
+    },
+    {
+      "id": 17,
+      "nomeCompleto": "Marcão Oliveira",
+      "email": "marcao@gmail.com",
+      "cidadeId": "43"
+    },
+    {
+      "nomeCompleto": "Eduarda Maria",
+      "email": "duda@gmail.com",
+      "cidadeId": "43",
+      "id": 18
     }
   ]
 }

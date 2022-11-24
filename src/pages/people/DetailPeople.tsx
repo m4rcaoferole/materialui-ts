@@ -37,13 +37,38 @@ export const DetailPeople = () => {
           } else {
             setNome(result.nomeCompleto);
             console.log(result);
+            formRef.current?.setData(result);
           }
         });
     }
   }, [id]);
 
   const handleSave = (dados: IFormData) => {
-    console.log(dados);
+    setIsLoading(true);
+
+    if (id === 'nova') {
+      PessoasService
+        .create(dados)
+        .then((result) => {
+          setIsLoading(false);
+          
+          if (result instanceof Error) {
+            alert(result.message);
+          } else {
+            navigate(`/pessoas/detalhe/${result}`);
+          }
+        });
+    } else {
+      PessoasService
+        .updateById(Number(id), { id: Number(id), ...dados })
+        .then((result) => {
+          setIsLoading(false);
+          
+          if (result instanceof Error) {
+            alert(result.message);
+          }
+        });
+    }
   };
 
   const handleDelete = (id: number) => {
@@ -70,20 +95,20 @@ export const DetailPeople = () => {
           showButtonNew={id !== 'nova'}
           showButtonDelete={id !== 'nova'}
 
-          clickSaveButton={() => formRef.current?.submitForm()}
-          clickSaveAndCloseButton={() => formRef.current?.submitForm()}
-          clickDeleteButton={() => handleDelete(Number(id))}
           clickBackButton={() => navigate('/pessoas')}
+          clickDeleteButton={() => handleDelete(Number(id))}
+          clickSaveButton={() => formRef.current?.submitForm()}
           clickNewButton={() => navigate('/pessoas/detalhe/nova')}
+          clickSaveAndCloseButton={() => formRef.current?.submitForm()}
         />
       }
     >
 
       <Form ref={formRef} onSubmit={handleSave}>
 
-        <VTextField name='nomeCompleto' />
-        <VTextField name='email' />
-        <VTextField name='cidadeId' />
+        <VTextField placeholder='Nome Completo' name='nomeCompleto' />
+        <VTextField placeholder='Email' name='email' />
+        <VTextField placeholder='Id Cidade' name='cidadeId' />
         
       </Form>
 

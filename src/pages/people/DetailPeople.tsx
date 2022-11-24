@@ -1,13 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FormHandles } from '@unform/core';
-import { Form } from '@unform/web';
 import { Box, Grid, LinearProgress, Paper, Typography } from '@mui/material';
 
 import { PessoasService } from '../../shared/services/api/pessoas/PessoasService';
 import { ToolbarDetail } from '../../shared/components';
 import { LayoutBasePage } from '../../shared/layouts';
-import { VTextField } from '../../shared/forms';
+import { VTextField, VForm } from '../../shared/forms';
 
 interface IFormData {
   email: string;
@@ -111,7 +110,7 @@ export const DetailPeople = () => {
       }
     >
 
-      <Form ref={formRef} onSubmit={handleSave}>
+      <VForm ref={formRef} onSubmit={handleSave}>
         <Box margin={1} display="flex" flexDirection='column' component={Paper} variant="outlined">
 
           <Grid container direction="column" padding={1} spacing={2}>
@@ -164,7 +163,7 @@ export const DetailPeople = () => {
 
           </Grid>
         </Box>        
-      </Form>
+      </VForm>
 
     </LayoutBasePage>
   );

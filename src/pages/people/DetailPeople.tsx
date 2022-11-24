@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 
 import { PessoasService } from '../../shared/services/api/pessoas/PessoasService';
@@ -7,10 +8,17 @@ import { ToolbarDetail } from '../../shared/components';
 import { LayoutBasePage } from '../../shared/layouts';
 import { VTextField } from '../../shared/forms';
 
+interface IFormData {
+  email: string;
+  cidadeId: number;
+  nomeCompleto: string;
+}
 
 export const DetailPeople = () => {
   const { id = '' } = useParams<'id'>();
   const navigate = useNavigate();
+
+  const formRef = useRef<FormHandles>(null);
 
   const [isLoading, setIsLoading] = useState(false);
   const [nome, setNome] = useState('');
@@ -34,8 +42,8 @@ export const DetailPeople = () => {
     }
   }, [id]);
 
-  const handleSave = () => {
-    console.log('save');
+  const handleSave = (dados: IFormData) => {
+    console.log(dados);
   };
 
   const handleDelete = (id: number) => {
@@ -62,8 +70,8 @@ export const DetailPeople = () => {
           showButtonNew={id !== 'nova'}
           showButtonDelete={id !== 'nova'}
 
-          clickSaveButton={handleSave}
-          clickSaveAndCloseButton={handleSave}
+          clickSaveButton={() => formRef.current?.submitForm()}
+          clickSaveAndCloseButton={() => formRef.current?.submitForm()}
           clickDeleteButton={() => handleDelete(Number(id))}
           clickBackButton={() => navigate('/pessoas')}
           clickNewButton={() => navigate('/pessoas/detalhe/nova')}
@@ -71,14 +79,15 @@ export const DetailPeople = () => {
       }
     >
 
-      <Form onSubmit={(dados) => (console.log(dados))}>
+      <Form ref={formRef} onSubmit={handleSave}>
 
-        <VTextField 
-          name='nomeCompleto'
-        />
+        <VTextField name='nomeCompleto' />
+        <VTextField name='email' />
+        <VTextField name='cidadeId' />
         
-        <button type='submit'>Submit</button>
       </Form>
+
+
       {/* { isLoading && (
         <LinearProgress variant="indeterminate" />
       )}

@@ -71,10 +71,13 @@ export const DetailPeople = () => {
       }
     >
 
-      <Form onSubmit={console.log}>
+      <Form onSubmit={(dados) => (console.log(dados))}>
 
-        <VTextField />
-
+        <VTextField 
+          name='nomeCompleto'
+        />
+        
+        <button type='submit'>Submit</button>
       </Form>
       {/* { isLoading && (
         <LinearProgress variant="indeterminate" />

@@ -1,17 +1,24 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Box, Grid, LinearProgress, Paper, Typography } from '@mui/material';
+import * as yup from 'yup';
 
 import { PessoasService } from '../../shared/services/api/pessoas/PessoasService';
 import { ToolbarDetail } from '../../shared/components';
 import { LayoutBasePage } from '../../shared/layouts';
-import { VTextField, VForm, useVForm } from '../../shared/forms';
+import { VTextField, VForm, useVForm, IVFormsErrors } from '../../shared/forms';
 
 interface IFormData {
   email: string;
   cidadeId: number;
   nomeCompleto: string;
 }
+
+const formValidationSchema: yup.SchemaOf<IFormData> = yup.object().shape({
+  cidadeId: yup.number().required(),
+  email: yup.string().required().email(),
+  nomeCompleto: yup.string().required().min(3),
+});
 
 export const DetailPeople = () => {
   const { id = '' } = useParams<'id'>();
@@ -54,39 +61,57 @@ export const DetailPeople = () => {
   }, [id]);
 
   const handleSave = (dados: IFormData) => {
-    setIsLoading(true);
+    formValidationSchema.
+      validate(dados, { abortEarly: false})
+      .then((dadosValidados) => {
+        setIsLoading(true);
 
-    if (id === 'nova') {
-      PessoasService
-        .create(dados)
-        .then((result) => {
-          setIsLoading(false);
-          
-          if (result instanceof Error) {
-            alert(result.message);
-          } else {
-            if (isSaveAndClose()) {
-              navigate('/pessoas');
-            } else {
-              navigate(`/pessoas/detalhe/${result}`);
-            }
-          }
+        if (id === 'nova') {
+          PessoasService
+            .create(dadosValidados)
+            .then((result) => {
+              setIsLoading(false);
+                
+              if (result instanceof Error) {
+                alert(result.message);
+              } else {
+                if (isSaveAndClose()) {
+                  navigate('/pessoas');
+                } else {
+                  navigate(`/pessoas/detalhe/${result}`);
+                }
+              }
+            });
+        } else {
+          PessoasService
+            .updateById(Number(id), { id: Number(id), ...dadosValidados })
+            .then((result) => {
+              setIsLoading(false);
+                
+              if (result instanceof Error) {
+                alert(result.message);
+              } else {
+                if (isSaveAndClose()) {
+                  navigate('/pessoas');
+                } 
+              }
+            });
+        }
+
+      })
+      .catch((errors: yup.ValidationError) => {
+        const validationErrors: IVFormsErrors = {};
+
+        errors.inner.forEach(error => {
+          if (!error.path) return;
+
+          validationErrors[error.path] = error.message;
         });
-    } else {
-      PessoasService
-        .updateById(Number(id), { id: Number(id), ...dados })
-        .then((result) => {
-          setIsLoading(false);
-          
-          if (result instanceof Error) {
-            alert(result.message);
-          } else {
-            if (isSaveAndClose()) {
-              navigate('/pessoas');
-            } 
-          }
-        });
-    }
+
+        formRef.current?.setErrors(validationErrors);
+      });
+
+    
   };
 
   const handleDelete = (id: number) => {

@@ -90,5 +90,15 @@
       "cidadeId": "27",
       "id": 19
     }
+  ],
+  "cidades": [
+    {
+      "nome": "Cuiabá",
+      "id": 1
+    },
+    {
+      "nome": "Varzea Grande",
+      "id": 2
+    }
   ]
 }

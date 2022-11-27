@@ -115,6 +115,14 @@
     {
       "nome": "Santo Antonio",
       "id": 6
+    },
+    {
+      "nome": "Juína",
+      "id": 7
+    },
+    {
+      "nome": "Cáceres",
+      "id": 8
     }
   ],
   "auth": {

@@ -43,7 +43,6 @@ export const DetailCity = () => {
             navigate('/cidades');
           } else {
             setNome(result.nome);
-            console.log(result);
             formRef.current?.setData(result);
           }
         });

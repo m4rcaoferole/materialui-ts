@@ -48,7 +48,6 @@ export const DetailPeople = () => {
             navigate('/pessoas');
           } else {
             setNome(result.nomeCompleto);
-            console.log(result);
             formRef.current?.setData(result);
           }
         });

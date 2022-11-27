@@ -12,7 +12,7 @@ import { useDrawerContext } from '../contexts';
 interface ILayoutBasePageProps {
   title: string;
   children: React.ReactNode;
-  toolbar: React.ReactNode;
+  toolbar?: React.ReactNode;
 }
 
 export const LayoutBasePage: React.FC<ILayoutBasePageProps> = ({

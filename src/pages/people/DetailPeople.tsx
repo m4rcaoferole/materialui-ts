@@ -55,7 +55,7 @@ export const DetailPeople = () => {
     } else {
       formRef.current?.setData({
         nomeCompleto: '',
-        cidadeId: '',
+        cidadeId: undefined,
         email: '',
       });
     }
@@ -190,13 +190,7 @@ export const DetailPeople = () => {
 
             <Grid container item direction="row" spacing={2}>
               <Grid item xs={12} sm={12} md={6} lg={4} xl={2}>
-                <AutoCompleteCity />
-                {/* <VTextField
-                  fullWidth 
-                  label='Cidade' 
-                  name='cidadeId'
-                  disabled={isLoading}
-                /> */}
+                <AutoCompleteCity isExternalLoading={isLoading} />
               </Grid>
             </Grid>
 

@@ -14,9 +14,9 @@
     },
     {
       "id": 7,
+      "nomeCompleto": "Thiago Oliveira",
       "email": "thiago@gmail.com",
-      "cidadeId": "21",
-      "nomeCompleto": "Thiago Oliveira"
+      "cidadeId": 3
     },
     {
       "id": 8,
@@ -99,6 +99,22 @@
     {
       "nome": "Varzea Grande",
       "id": 2
+    },
+    {
+      "id": 3,
+      "nome": "Poconé"
+    },
+    {
+      "nome": "Sinop",
+      "id": 4
+    },
+    {
+      "nome": "Barra do Garças",
+      "id": 5
+    },
+    {
+      "nome": "Santo Antonio",
+      "id": 6
     }
   ]
 }

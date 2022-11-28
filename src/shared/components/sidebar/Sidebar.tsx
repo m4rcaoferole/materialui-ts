@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import { deepOrange } from '@mui/material/colors';
 import { Box } from '@mui/system';
-import { useAppThemeContext, useDrawerContext } from '../../contexts';
+import { useAppThemeContext, useAuthContext, useDrawerContext } from '../../contexts';
 import { ListItemLink } from './ListItemLink';
 
 interface ISidebarProps {
@@ -25,6 +25,7 @@ export const Sidebar: React.FC<ISidebarProps> = ({ children }) => {
 
   const { isDrawerOpen, toggleDrawerOpen, drawerOptions } = useDrawerContext();
   const { toggleTheme } = useAppThemeContext();
+  const { logout } = useAuthContext();
 
   return (
     <>
@@ -82,6 +83,12 @@ export const Sidebar: React.FC<ISidebarProps> = ({ children }) => {
                   <Icon>dark_mode</Icon>
                 </ListItemIcon>
                 <ListItemText primary="Alternar cor" />
+              </ListItemButton>
+              <ListItemButton onClick={logout}>
+                <ListItemIcon>
+                  <Icon>logout</Icon>
+                </ListItemIcon>
+                <ListItemText primary="Sair" />
               </ListItemButton>
             </List>
           </Box>
